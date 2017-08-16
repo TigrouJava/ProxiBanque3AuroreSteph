@@ -1,16 +1,9 @@
 package org.formation.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 public abstract class Compte {
 
-	// Attributs
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long numCompte;
-	
+	// Attributs	
 	private double solde;
 	private String dateOuverture;
 
@@ -43,13 +36,13 @@ public abstract class Compte {
 	}
 
 	public long getNumCompte() {
-		return numCompte;
+		return getNumCompte();
 	}
 
 	// To String
-	@Override
-	public String toString() {
-		return "Compte [numCompte=" + numCompte + ", solde=" + solde + ", dateOuverture=" + dateOuverture + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Compte [numCompte=" + numCompte + ", solde=" + solde + ", dateOuverture=" + dateOuverture + "]";
+//	}
 
 }

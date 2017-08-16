@@ -1,11 +1,17 @@
 package org.formation.model;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  * JavaBean de la classe Client qui étend la classe abstraite Personne.
@@ -15,9 +21,17 @@ import javax.persistence.OneToOne;
 
 @Entity
 @ManagedBean
-public class Client extends Personne {
+@Table(name="client")
+public class Client implements Serializable {
+
+	private static final long serialVersionUID = 6616955274995509279L;
 
 	//Attributs
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
+	private String nom;
+	private String prenom;
 	private String adresse;
 	private String codepostale;
 	private String ville;
@@ -37,37 +51,52 @@ public class Client extends Personne {
 
 
 	//constructeurs
-	public Client(long id, String nom, String prenom, String adresse, String codepostale, String ville, String tel,
-			CompteCourant cc, CompteEpargne ce, Conseiller conseiller) {
-		super(id, nom, prenom);
-		this.adresse = adresse;
-		this.codepostale = codepostale;
-		this.ville = ville;
-		this.tel = tel;
-		this.cc = cc;
-		this.ce = ce;
-		this.conseiller = conseiller;
-	}
-	
-	public Client(long id, String nom, String prenom, String adresse, String codepostale, String ville, String tel,
-			CompteCourant cc, CompteEpargne ce) {
-		super(id, nom, prenom);
-		this.adresse = adresse;
-		this.codepostale = codepostale;
-		this.ville = ville;
-		this.tel = tel;
-		this.cc = cc;
-		this.ce = ce;
-	}
-	
 	public Client(String nom, String prenom) {
-		super(nom, prenom);
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
 	}
+	
+
+	public Client(String nom, String prenom, String adresse, String codepostale, String ville, String tel,
+			CompteCourant cc, CompteEpargne ce) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.codepostale = codepostale;
+		this.ville = ville;
+		this.tel = tel;
+		this.cc = cc;
+		this.ce = ce;
+	}
+
+	public Client(String nom, String prenom, String adresse, String codepostale, String ville, String tel,
+			CompteCourant cc) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.codepostale = codepostale;
+		this.ville = ville;
+		this.tel = tel;
+		this.cc = cc;
+	}
+
+	public Client(String nom, String prenom, String adresse, String codepostale, String ville, String tel) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.codepostale = codepostale;
+		this.ville = ville;
+		this.tel = tel;
+	}
+
 	
 	public Client() {
 		super();
 	}
-
 	//Getters et Setters
 	public String getAdresse() {
 		return adresse;
@@ -125,11 +154,35 @@ public class Client extends Personne {
 		this.conseiller = conseiller;
 	}
 
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Client [adresse=" + adresse + ", codepostale=" + codepostale + ", ville=" + ville + ", tel=" + tel
-				+ ", cc=" + cc + ", ce=" + ce + ", conseiller=" + conseiller + "]";
+		return "Client [nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", codepostale=" + codepostale
+				+ ", ville=" + ville + ", tel=" + tel + ", cc=" + cc + ", ce=" + ce + ", conseiller=" + conseiller
+				+ "]";
 	}
+
+	
 	
 	
 }

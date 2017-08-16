@@ -11,6 +11,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+
 import org.formation.model.Client;
 
 
@@ -18,7 +19,7 @@ import org.formation.model.Client;
 @ApplicationScoped
 public class DaoClient implements IDaoClient, Serializable{
 
-	private static final long serialVersionUID = 3419878067816749510L;
+private static final long serialVersionUID = 3419878067816749510L;
 	
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-pu");
 	
@@ -98,12 +99,47 @@ public class DaoClient implements IDaoClient, Serializable{
 
 	@Override
 	public void updateClient(Client cli) throws Exception {
-	
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction txn = em.getTransaction();
+		
+		try {
+			txn.begin();
+			System.out.println("test");
+			em.merge(cli);
+			txn.commit();
+			
+		} catch (Exception e) {
+			if (txn != null) {
+				txn.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
 	}
 
 	@Override
 	public void deleteClient(long idClient) throws Exception {
-
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction txn = em.getTransaction();
+		
+		try {
+			txn.begin();
+			Client client = em.find(Client.class, idClient);
+			em.remove(client);
+			txn.commit();
+		} catch (Exception e) {
+			if (txn != null) {
+				txn.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
 		
 	}
 
