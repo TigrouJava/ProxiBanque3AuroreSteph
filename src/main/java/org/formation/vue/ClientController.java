@@ -1,22 +1,28 @@
 package org.formation.vue;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-import javax.annotation.PostConstruct;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.sun.faces.taglib.html_basic.DataTableTag;
+
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIData;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
+
 
 import org.formation.model.Client;
 import org.formation.service.IServiceClient;
+
 
 
 
@@ -25,61 +31,143 @@ import org.formation.service.IServiceClient;
 public class ClientController implements Serializable{
 
 	private static final long serialVersionUID = 3774463683041113840L;
-
+	
 	private List<Client> clients;
-	private Logger logger = Logger.getLogger(getClass().getName());
+	
+	private static Logger LOGGER = LoggerFactory.getLogger(ClientController.class);
 
 	@Inject
 	private IServiceClient service;
 
-	public ClientController() throws Exception {
-		clients = new ArrayList<>();
 	
-	}
-
-	@PostConstruct
-	public void initService() {
-		System.out.println(this.getClass().getName()+"je suis construit !"+service);
-	}
-
-	public List<Client> getClients() {
-		return clients;
-	}
-
+	
+	
 	public void loadClients() {
 
-		logger.info("Loading clients");
+		LOGGER.debug("lister clients");
+		LOGGER.info("information");
 
-		clients.clear();
+		//clients.clear();
 
 		try {
-
-			// get all students from database
 			clients = service.getClients();
 
 		} catch (Exception exc) {
-			// send this to server logs
-			logger.log(Level.SEVERE, "Error loading clients", exc);
-
-			// add error message for JSF page
+			LOGGER.error("Error loading clients", exc);
 			addErrorMessage(exc);
 		}
 	}
+	
+	public List<Client> getClients() {
+		return clients;
+	}
+	
+	
+	public String addClient(Client client) {
 
-	public String addStudent(Client cli) {
+		LOGGER.info("Adding client: " + client);
 
-		logger.info("client ajouté : " + cli);
+		try {
+			service.addClient(client);
+		} catch (Exception exc) {
+			LOGGER.error("Error adding clients", exc);
+			addErrorMessage(exc);
+			return null;
+		}
+
+		return "list-clients?faces-redirect=true";
+	}
+	
+	
+	public String loadClient(long clientId) {
+
+		//LOGGER.info("loading client: " + clientId);
+
+		try {
+			
+			Client client = service.getClient(clientId);
+			
+
+			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+
+			Map<String, Object> requestMap = externalContext.getRequestMap();
+			requestMap.put("client", client);
+			
+		} catch (Exception exc) {
+			
+			//LOGGER.error("Error loading client id:" + clientId, exc);
+
+			addErrorMessage(exc);
+
+			return null;
+		}
+		
+
+		return "update-client.xhtml";
+	}
+	
+	public String readClient(long clientId) {
+
+		//LOGGER.info("loading client: " + clientId);
+
+		try {
+			
+			Client client = service.getClient(clientId);
+			
+
+			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+
+			Map<String, Object> requestMap = externalContext.getRequestMap();
+			requestMap.put("clt", client);
+			
+		} catch (Exception exc) {
+			
+			//LOGGER.error("Error loading client id:" + clientId, exc);
+
+			addErrorMessage(exc);
+
+			return null;
+		}
+		
+
+		return "client-details.xhtml";
+	}
+//	
+//	public String updateClient(long clientId) {
+//
+//		LOGGER.info("updating client: " + clientId);
+//
+//		try {
+//
+//			service.updateClient(clientId);
+//
+//		} catch (Exception exc) {
+//			
+//			//LOGGER.log(Level.SEVERE, "Error updating client: " + client, exc);
+//
+//			
+//			addErrorMessage(exc);
+//
+//			return null;
+//		}
+//
+//		return "list-clients?faces-redirect=true";
+//	}
+
+
+	public String updateClient(Client cli) {
+
+		//LOGGER.info("updating client: " + clientId);
 
 		try {
 
-			// add student to the database
-			service.addClient(cli);
+			service.updateClient(cli);
 
 		} catch (Exception exc) {
-			// send this to server logs
-			logger.log(Level.SEVERE, "Error adding clients", exc);
+			
+			//LOGGER.log(Level.SEVERE, "Error updating client: " + client, exc);
 
-			// add error message for JSF page
+			
 			addErrorMessage(exc);
 
 			return null;
@@ -87,71 +175,21 @@ public class ClientController implements Serializable{
 
 		return "list-clients?faces-redirect=true";
 	}
+	
+	public String deleteClient(int clientId) {
 
-	public String loadClient(int idClient) {
-
-		logger.info("loading client: " + idClient);
-
-		try {
-			// get student from database
-			Client cli = service.getClient(idClient);
-
-			// put in the request attribute ... so we can use it on the form
-			// page
-			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-
-			Map<String, Object> requestMap = externalContext.getRequestMap();
-			requestMap.put("client", cli);
-
-		} catch (Exception exc) {
-			// send this to server logs
-			logger.log(Level.SEVERE, "Error loading id client :" + idClient, exc);
-
-			// add error message for JSF page
-			addErrorMessage(exc);
-
-			return null;
-		}
-
-		return "update-student-form.xhtml";
-	}
-
-	public String updateClient(Client cli) {
-
-		logger.info("Client modifié : " + cli);
+		LOGGER.info("Deleting client id: " + clientId);
 
 		try {
 
-			// update client in the database
-			service.updateClient(cli);
+	
+			service.deleteClient(clientId);
 
 		} catch (Exception exc) {
-			// send this to server logs
-			logger.log(Level.SEVERE, "Error updating student: " + cli, exc);
+			
+			//LOGGER.log(Level.SEVERE, "Error deleting client id: " + clientId, exc);
 
-			// add error message for JSF page
-			addErrorMessage(exc);
-
-			return null;
-		}
-
-		return "list-client?faces-redirect=true";
-	}
-
-	public String deleteClient(int idClient) {
-
-		logger.info("Suppression du client : " + idClient);
-
-		try {
-
-			// delete the student from the database
-			service.deleteClient(idClient);
-
-		} catch (Exception exc) {
-			// send this to server logs
-			logger.log(Level.SEVERE, "Erreur suppression client : " + idClient, exc);
-
-			// add error message for JSF page
+			
 			addErrorMessage(exc);
 
 			return null;
@@ -159,10 +197,26 @@ public class ClientController implements Serializable{
 
 		return "list-clients";
 	}
-
+	
+	
+	
+	
+	
+	
+	
 	private void addErrorMessage(Exception exc) {
 		FacesMessage message = new FacesMessage("Error: " + exc.getMessage());
 		FacesContext.getCurrentInstance().addMessage(null, message);
 	}
+	
+	public String logOut() {
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = facesContext.getExternalContext();
+		externalContext.invalidateSession();
+		return "index";
+	}
+	
+	
 
+	
 }

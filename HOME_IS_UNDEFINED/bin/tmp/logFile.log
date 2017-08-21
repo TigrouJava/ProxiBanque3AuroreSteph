@@ -1,0 +1,58 @@
+13:50:42.082 1013 [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: CompteCourant
+13:50:42.085 1016 [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: CompteEpargne
+13:50:42.086 1017 [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: Conseiller
+13:50:42.087 1018 [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: client
+13:50:42.088 1019 [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: CompteCourant
+13:50:42.089 1020 [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: CompteEpargne
+13:50:42.089 1020 [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: Conseiller
+13:50:42.090 1021 [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: client
+13:50:42.091 1022 [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: CompteCourant
+13:50:42.091 1022 [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: CompteEpargne
+13:50:42.092 1023 [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: Conseiller
+13:50:42.092 1023 [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: client
+13:50:42.093 1024 [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: hibernate_sequences
+14:03:22.631 954  [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: CompteCourant
+14:03:22.634 957  [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: CompteEpargne
+14:03:22.635 958  [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: Conseiller
+14:03:22.636 959  [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: Personne
+14:03:22.636 959  [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: client
+14:03:22.637 960  [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: CompteCourant
+14:03:22.638 961  [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: CompteEpargne
+14:03:22.639 962  [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: Conseiller
+14:03:22.639 962  [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: Personne
+14:03:22.640 963  [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: client
+14:03:22.641 964  [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: CompteCourant
+14:03:22.641 964  [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: CompteEpargne
+14:03:22.641 964  [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: Conseiller
+14:03:22.642 965  [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: Personne
+14:03:22.642 965  [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: client
+14:03:22.644 967  [main] INFO  java.sql.DatabaseMetaData
+				- HHH000262: Table not found: hibernate_sequences

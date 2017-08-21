@@ -11,6 +11,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+/**
+ * JavaBean de la classe Conseiller. Comprend
+ * les attributs et constructeurs qui sont propres aux conseillersS.
+ * Contient les annotations qui permettent de générer la table "conseiller" en base de données.
+ *
+ */
 @Entity
 public class Conseiller implements Serializable {
 

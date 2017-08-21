@@ -1,0 +1,48 @@
+<fieldset>
+	<legend>Créer un client</legend>
+	<div class="form-group">
+		<label for="nom" class="col-lg-2 control-label">Nom</label>
+		<div class="col-lg-10">
+			<h:inputText class="form-control" id="nom" value="#{client.nom}" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="prenom" class="col-lg-2 control-label">Prénom</label>
+		<div class="col-lg-10">
+			<h:inputText class="form-control" id="prenom"
+				value="#{client.prenom}" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="adresse" class="col-lg-2 control-label">Adresse</label>
+		<div class="col-lg-10">
+			<h:inputText class="form-control" id="adresse"
+				value="#{client.adresse}" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="cp" class="col-lg-2 control-label">Code postal</label>
+		<div class="col-lg-10">
+			<h:inputText class="form-control" id="cp"
+				value="#{client.codepostale}" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="ville" class="col-lg-2 control-label">Ville</label>
+		<div class="col-lg-10">
+			<h:inputText class="form-control" id="ville" value="#{client.ville}" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="tel" class="col-lg-2 control-label">N° téléphone</label>
+		<div class="col-lg-10">
+			<h:inputText class="form-control" id="tel" value="#{client.tel}" />
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-lg-10 col-lg-offset-6">
+			<h:commandButton value="Créer" class="btn btn-primary butaddclient"
+				action="#{clientController.addClient(client)}" />
+		</div>
+	</div>
+</fieldset>

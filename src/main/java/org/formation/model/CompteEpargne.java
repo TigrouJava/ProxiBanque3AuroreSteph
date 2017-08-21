@@ -7,6 +7,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+/**
+ * JavaBean de la classe CompteEpargne qui étend la classe abstraite Compte. Comprend
+ * les attributs et constructeurs qui sont propres aux comptes epargnes.
+ * Contient les annotations qui permettent de générer la table "compteEpargne" en base de données.
+ *
+ */
+
 @Entity
 @ManagedBean
 public class CompteEpargne extends Compte {

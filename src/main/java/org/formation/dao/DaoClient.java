@@ -14,6 +14,10 @@ import javax.persistence.TypedQuery;
 
 import org.formation.model.Client;
 
+/**
+ *@author Aurore Lions, Stéphanie Woerner
+ * Data access object client, où sont gérées les opérations de création, modification, suppression des clients et leur persistance.
+ */
 
 @Named
 @ApplicationScoped
@@ -97,6 +101,30 @@ private static final long serialVersionUID = 3419878067816749510L;
 		return client;
 	}
 
+//	@Override
+//	public void updateClient(long id) throws Exception {
+//		EntityManager em = emf.createEntityManager();
+//		EntityTransaction txn = em.getTransaction();
+//		
+//		try {
+//			txn.begin();
+//			Client cli = em.find(Client.class, id);
+//			System.out.println("test");
+//			em.merge(cli);
+//			txn.commit();
+//			
+//		} catch (Exception e) {
+//			if (txn != null) {
+//				txn.rollback();
+//			}
+//			e.printStackTrace();
+//		} finally {
+//			if (em != null) {
+//				em.close();
+//			}
+//		}
+//	}
+
 	@Override
 	public void updateClient(Client cli) throws Exception {
 		EntityManager em = emf.createEntityManager();
@@ -104,6 +132,7 @@ private static final long serialVersionUID = 3419878067816749510L;
 		
 		try {
 			txn.begin();
+			//Client cli = em.find(Client.class, id);
 			System.out.println("test");
 			em.merge(cli);
 			txn.commit();
@@ -119,7 +148,7 @@ private static final long serialVersionUID = 3419878067816749510L;
 			}
 		}
 	}
-
+	
 	@Override
 	public void deleteClient(long idClient) throws Exception {
 		EntityManager em = emf.createEntityManager();

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="/template/template.xhtml">
+
+	<ui:define name="titre">Modifier les informations du client</ui:define>
+
+	<ui:define name="content">
+		<h:form class="form-horizontal">
+			<fieldset>
+				<legend>Modifier les informations d'un client</legend>
+				<div class="form-group">
+					<label for="nom" class="col-lg-2 control-label">Nom</label>
+					<div class="col-lg-10">
+						<h:inputText class="form-control" id="nom"   label="nom" value="#{client.nom}" required="true" requiredMessage="Nom obligatoire" validatorMessage="caractères invalides">
+			<f:validateRegex pattern="^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ\s-]+$"></f:validateRegex>
+			</h:inputText>
+			<h:message for="nom" style="color:red"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="prenom" class="col-lg-2 control-label">Prénom</label>
+					<div class="col-lg-10">
+						<h:inputText class="form-control" id="prenom" label="prenom"
+							value="#{client.prenom}" required="true" requiredMessage="Prénom obligatoire" validatorMessage="Caractères invalides">
+				<f:validateRegex pattern="^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ\s-]+$"></f:validateRegex>
+			</h:inputText>
+				<h:message for="prenom" style="color:red"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="adresse" class="col-lg-2 control-label">Adresse</label>
+					<div class="col-lg-10">
+						<h:inputText class="form-control" id="adresse" label="adresse"
+							value="${client.adresse}" required="true" requiredMessage="Ville obligatoire" validatorMessage="Caractères invalides">
+				<f:validateRegex pattern="^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ\s-]+$"></f:validateRegex>
+			</h:inputText>
+				<h:message for="adresse" style="color:red"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="cp" class="col-lg-2 control-label">Code postal</label>
+					<div class="col-lg-10">
+						<h:inputText class="form-control" id="cp"  label="codepostal"
+							value="#{client.codepostale}" required="true" requiredMessage="Code postale obligatoire"  validatorMessage="5 caractères numériques uniquement">
+				<f:validateRegex pattern="^[0-9]+$"></f:validateRegex>
+				<f:validateLength minimum="5" maximum="5"/>
+				</h:inputText>
+				<h:message for="cp" style="color:red"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="ville" class="col-lg-2 control-label">Ville</label>
+					<div class="col-lg-10">
+						<h:inputText class="form-control" id="ville"  label="ville"
+							value="#{client.ville}" required="true" requiredMessage="Ville obligatoire" validatorMessage="Caractères invalides">
+			<f:validateRegex pattern="^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ\s-]+$"></f:validateRegex>
+			</h:inputText>
+			<h:message for="ville" style="color:red"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="tel" class="col-lg-2 control-label">N°
+						téléphone</label>
+					<div class="col-lg-10">
+						<h:inputText class="form-control" id="tel" value="#{client.tel}" required="true" requiredMessage="Téléphone obligatoire" label="tel" validatorMessage="10 caractères numériques uniquement">
+			<f:validateRegex pattern="^[0-9]+$"></f:validateRegex>
+			<f:validateLength minimum="10" maximum="10"/>
+				</h:inputText>
+			<h:message for="tel" style="color:red"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-6">
+						<h:commandButton value="Valider"
+							class="btn btn-primary butaddclient"
+							action="#{clientController.updateClient(client)}" />
+					</div>
+				</div>
+			</fieldset>
+<h:commandLink href="list-clients.xhtml"/>
+		</h:form>
+
+
+	</ui:define>
+
+
+
+</ui:composition>
+
+</html>
+
+
+
+
+
+
+
+
